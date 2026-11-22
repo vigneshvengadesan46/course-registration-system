@@ -1,3 +1,59 @@
+# Course Registration System — Backend
+
+Spring Boot REST API for the Course Registration System. It provides JWT authentication, email OTP verification, role-based authorization (Student and Admin), course management, and registration management.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework**: Spring Boot
+- **Security**: Spring Security with JWT
+- **Database**: MySQL with Spring Data JPA
+- **Email**: Gmail SMTP (asynchronous)
+- **API Docs**: Swagger / OpenAPI
+- **Build Tool**: Maven
+
+---
+
+## 📁 Project Structure
+
+```text
+course-registration-system/
+├── .mvn/wrapper/
+├── src/
+│   ├── main/
+│   │   ├── java/com/example/course_registration_system/
+│   │   │   ├── config/
+│   │   │   ├── controller/
+│   │   │   ├── dto/
+│   │   │   ├── entity/
+│   │   │   ├── exception/
+│   │   │   ├── repository/
+│   │   │   ├── security/
+│   │   │   └── service/
+│   │   └── resources/application.properties
+│   └── test/
+├── .gitattributes
+├── .gitignore
+├── README.md
+├── mvnw
+├── mvnw.cmd
+└── pom.xml
+```
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Java (use the version set in `pom.xml`)
+- MySQL
+
+### 1. Configure Environment Variables
+Create a `.env` file or set these values in your environment. Use your own values and never commit them:
+```env
+DB_URL=jdbc:mysql://localhost:3306/your_database
+DB_
 # Course Registration System — Frontend
 
 A modern, responsive web application for student course registrations and administrative academic management, built with **React** and **Vite**.
@@ -35,25 +91,26 @@ A modern, responsive web application for student course registrations and admini
 
 ```text
 frontend/
-├── public/               # Static assets & icons
-│   ├── favicon.svg
-│   └── icons.svg
+├── public/                  # Static assets & icons
 ├── src/
-│   ├── assets/           # UI images and illustrations
-│   ├── AdminCourses.jsx  # Admin course management component & styles
-│   ├── AdminDashboard.jsx# Admin dashboard analytics component
+│   ├── assets/              # UI images and illustrations
+│   ├── AdminCourses.jsx     # Admin course management
+│   ├── AdminDashboard.jsx   # Admin dashboard analytics
 │   ├── AdminRegistrations.jsx # Course enrollment records
-│   ├── AdminStudents.jsx # Student directory and details
-│   ├── App.jsx           # Application entry & authentication handling
-│   ├── Register.jsx      # Student registration form
+│   ├── AdminStudents.jsx    # Student directory and details
+│   ├── App.jsx              # Application entry & authentication handling
+│   ├── Register.jsx         # Student registration form
 │   ├── StudentDashboard.jsx # Student portal & course enrollment
-│   ├── VerifyOtp.jsx     # Email OTP verification interface
-│   ├── api.js            # Central API configuration
-│   └── main.jsx          # React DOM root render
-├── .env                  # Environment variables
-├── index.html            # Main HTML entry
-├── package.json          # Dependencies and scripts
-└── vite.config.js        # Vite configuration
+│   ├── VerifyOtp.jsx        # Email OTP verification interface
+│   ├── api.js               # Central API configuration
+│   └── main.jsx             # React DOM root render
+├── .gitignore
+├── README.md
+├── eslint.config.js         # ESLint configuration
+├── index.html               # Main HTML entry
+├── package-lock.json
+├── package.json             # Dependencies and scripts
+└── vite.config.js           # Vite configuration
 ```
 
 ---
@@ -66,6 +123,7 @@ frontend/
 
 ### 1. Install Dependencies
 ```bash
+cd frontend
 npm install
 ```
 
