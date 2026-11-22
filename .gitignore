@@ -32,3 +32,9 @@ build/
 ### VS Code ###
 .vscode/
 .env
+
+node_modules/
+*.sql
+.env
+node_modules/
+*.sql
