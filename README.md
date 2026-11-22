@@ -1,150 +1,160 @@
-# Course Registration System — Backend
+# Course Registration System
 
-Spring Boot REST API for the Course Registration System. It provides JWT authentication, email OTP verification, role-based authorization (Student and Admin), course management, and registration management.
+A full-stack web-based Course Registration System that allows students to register for courses and administrators to manage courses, students, and registrations.
+
+The application provides secure authentication using JWT, email verification using OTP, role-based authorization, course capacity management, registration management, and an administrative dashboard.
+
+---
+
+## 📌 Project Overview
+
+The Course Registration System is designed to simplify the process of managing student course registrations.
+
+The system has two main roles:
+
+- **Student**
+- **Admin**
+
+Students can create accounts, verify their email, log in, view available courses, register for courses, view their registered courses, update their profile, and drop courses.
+
+Administrators can manage courses, view registered students, view course registrations, and monitor registration statistics through an administrative dashboard.
+
+---
+
+## ✨ Features
+
+### 👨‍🎓 Student Features
+
+- Student registration
+- Email verification using OTP
+- OTP expiry
+- Resend OTP
+- Secure login
+- JWT-based authentication
+- Role-based authorization
+- View profile
+- Update profile
+- View available courses
+- Register for courses
+- View registered courses
+- Drop registered courses
+- Duplicate registration prevention
+- Course capacity validation
+- Student ownership validation
+- Registration confirmation email
+- Course drop confirmation email
+
+### 👨‍💼 Admin Features
+
+- Admin login
+- JWT-based authentication
+- Role-based authorization
+- Add, update, and delete courses
+- View all courses
+- View all students
+- View individual student details
+- View course registrations
+- Dashboard statistics
+  - Total students
+  - Total courses
+  - Total active registrations
+  - Verified and unverified student statistics
+  - Course-wise registration statistics
+  - Available seats
+  - Full/available course status
+  - Most popular course
+  - Recent student registrations
+  - Recent registrations
+
+---
+
+## 🔐 Security Features
+
+The application uses Spring Security and JWT for authentication and authorization.
+
+- JWT authentication
+- Role-based access control
+- Password hashing using BCrypt
+- Stateless authentication
+- Protected API endpoints
+- Student/Admin authorization
+- Student ownership validation
+- Email verification
+- OTP expiry
+- Environment-based secrets
+- Production-safe exception handling
+
+Passwords are never stored as plain text.
+
+---
+
+## 📧 Email Features
+
+The application uses Gmail SMTP for sending emails.
+
+Emails are sent for:
+
+- Email verification OTP
+- Course registration confirmation
+- Course drop confirmation
+- Admin registration notification
+
+Email credentials are stored using environment variables rather than being written directly in the source code.
+
+Email operations use asynchronous processing so that API requests do not need to wait for the SMTP operation to complete.
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Framework**: Spring Boot
-- **Security**: Spring Security with JWT
-- **Database**: MySQL with Spring Data JPA
-- **Email**: Gmail SMTP (asynchronous)
-- **API Docs**: Swagger / OpenAPI
-- **Build Tool**: Maven
+- **Frontend**: React, Vite
+- **Backend**: Spring Boot, Spring Security, JWT, Spring Data JPA
+- **Database**: MySQL
+- **Email**: Gmail SMTP
+- **Build Tools**: npm, Maven
+
+---
+
+## 🏗️ System Architecture
+
+The application follows a full-stack client-server architecture.
+
+```text
+                    ┌─────────────────────┐
+                    │       Browser       │
+                    │   React Frontend    │
+                    └──────────┬──────────┘
+                               │
+                               │ HTTP / REST API
+                               │ JWT
+                               ▼
+                    ┌─────────────────────┐
+                    │    Spring Boot      │
+                    │       Backend       │
+                    ├─────────────────────┤
+                    │ Controllers         │
+                    │ Services            │
+                    │ Repositories        │
+                    │ Security            │
+                    │ JWT Authentication  │
+                    │ Exception Handling  │
+                    └──────────┬──────────┘
+                               │
+                ┌──────────────┼──────────────┐
+                │              │              │
+                ▼              ▼              ▼
+        ┌────────────┐  ┌────────────┐  ┌────────────┐
+        │   MySQL    │  │   Gmail    │  │    JWT     │
+        │  Database  │  │   SMTP     │  │    Auth    │
+        └────────────┘  └────────────┘  └────────────┘
+```
 
 ---
 
 ## 📁 Project Structure
 
 ```text
-course-registration-system/
-├── .mvn/wrapper/
-├── src/
-│   ├── main/
-│   │   ├── java/com/example/course_registration_system/
-│   │   │   ├── config/
-│   │   │   ├── controller/
-│   │   │   ├── dto/
-│   │   │   ├── entity/
-│   │   │   ├── exception/
-│   │   │   ├── repository/
-│   │   │   ├── security/
-│   │   │   └── service/
-│   │   └── resources/application.properties
-│   └── test/
-├── .gitattributes
-├── .gitignore
-├── README.md
-├── mvnw
-├── mvnw.cmd
-└── pom.xml
-```
-
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-- Java (use the version set in `pom.xml`)
-- MySQL
-
-### 1. Configure Environment Variables
-Create a `.env` file or set these values in your environment. Use your own values and never commit them:
-```env
-DB_URL=jdbc:mysql://localhost:3306/your_database
-DB_
-# Course Registration System — Frontend
-
-A modern, responsive web application for student course registrations and administrative academic management, built with **React** and **Vite**.
-
----
-
-## 🌟 Key Features
-
-### 👨‍🎓 Student Portal
-- **Account Registration & Verification**: Fast student sign-up with email OTP verification.
-- **Available Courses**: View course catalog with department, credits, capacity, and real-time seat availability.
-- **One-Click Course Registration**: Enroll in available courses with automatic duplicate and capacity checks.
-- **Course Management**: View registered courses and drop registered courses at any time.
-- **Profile Management**: View and update profile details (name, department, year).
-
-### 👨‍💼 Administrator Portal
-- **Dashboard Analytics**: Real-time statistics including total students, courses, active registrations, and verified student counts.
-- **Course Management**: Add new courses, edit course details, and delete courses.
-- **Student Monitoring**: Browse all registered students and view individual student academic profiles.
-- **Registration Tracking**: Monitor course-wise student enrollment lists and recent activity.
-
----
-
-## 🛠️ Tech Stack
-
-- **Framework**: [React 19](https://react.dev/)
-- **Build Tool**: [Vite](https://vite.dev/)
-- **Styling**: Modern Vanilla CSS with responsive design, glassmorphism UI, and smooth animations
-- **State & Routing**: React Hooks (`useState`, `useEffect`) and lightweight route management
-- **Code Quality**: ESLint with modern React Hooks rules
-
----
-
-## 📁 Project Structure
-
-```text
-frontend/
-├── public/                  # Static assets & icons
-├── src/
-│   ├── assets/              # UI images and illustrations
-│   ├── AdminCourses.jsx     # Admin course management
-│   ├── AdminDashboard.jsx   # Admin dashboard analytics
-│   ├── AdminRegistrations.jsx # Course enrollment records
-│   ├── AdminStudents.jsx    # Student directory and details
-│   ├── App.jsx              # Application entry & authentication handling
-│   ├── Register.jsx         # Student registration form
-│   ├── StudentDashboard.jsx # Student portal & course enrollment
-│   ├── VerifyOtp.jsx        # Email OTP verification interface
-│   ├── api.js               # Central API configuration
-│   └── main.jsx             # React DOM root render
-├── .gitignore
-├── README.md
-├── eslint.config.js         # ESLint configuration
-├── index.html               # Main HTML entry
-├── package-lock.json
-├── package.json             # Dependencies and scripts
-└── vite.config.js           # Vite configuration
-```
-
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-- [Node.js](https://nodejs.org/) (v18 or higher recommended)
-- [npm](https://www.npmjs.com/)
-
-### 1. Install Dependencies
-```bash
-cd frontend
-npm install
-```
-
-### 2. Configure Environment Variables
-Create a `.env` file in the `frontend` root directory:
-```env
-VITE_API_URL=http://localhost:8080
-```
-
-### 3. Run Development Server
-```bash
-npm run dev
-```
-Open [http://localhost:5173](http://localhost:5173) in your browser.
-
-### 4. Build for Production
-```bash
-npm run build
-```
-
-### 5. Run Linter
-```bash
-npm run lint
-```
+.
+├── course-registration-system/   # Spring Boot backend
+├── frontend/                     # React + Vite frontend
+├
